@@ -16,15 +16,13 @@ namespace EFConsole
 				var data = from p in db.Course
 						   where p.Title.Contains("Git")
 					select p;
-				
 
-				
+				foreach (var item in db.Course)
+				{
+					item.Credits += 1;
+				}
 
-				var c8 = db.Course.Find(8);
-				
-				db.Course.Remove(c8);
 				db.SaveChanges();
-
 			}
 
 
