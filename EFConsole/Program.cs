@@ -14,7 +14,7 @@ namespace EFConsole
 			
 			using (var db = new ContosoUniversityEntities())
 			{
-				var one = db.Course.Find(1);
+				var one = db.Course.Include("Department").FirstOrDefault(p => p.CourseID == 1);
 				Console.WriteLine(one.Title+"\t"+one.Department.Name);
 
 
