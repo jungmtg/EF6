@@ -24,16 +24,23 @@ namespace EFConsole
 			
 			using (var db = new ContosoUniversityEntities())
 			{
+				//AutoMapper
+				var c = db.Course.Create();
+				c.DepartmentID = 1;
+				c.Title = "123123";
 
-				var data = db.vwDeptCourseCount;
+				db.Course.Add(c);
+				db.SaveChanges();
 
-				foreach (var item in data)
+				var co = db.Course.ToList();
+
+				foreach (var item in co)
 				{
-					Console.WriteLine(item.Name + "\t" + item.CourseCount);
+					Console.WriteLine(c.Department+"\t"+c.Title+"\t"+c.Credits);
 				}
 
-				Console.ReadKey();
 			}
+			
 			
 
 

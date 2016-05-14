@@ -14,11 +14,16 @@ namespace EFConsole
     
     public partial class Course
     {
+      
+        partial void Initialize();
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Course()
         {
             this.Enrollment = new HashSet<Enrollment>();
             this.Person = new HashSet<Person>();
+    
+    		Initialize();
         }
     
         public int CourseID { get; set; }
