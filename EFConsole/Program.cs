@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,11 +18,17 @@ namespace EFConsole
 						   where p.Title.Contains("Git")
 					select p;
 
-				foreach (var item in db.Course)
+				var updateDatas = from c in db.Course.Where(c => c.CourseID >= 9)
+								 select c;
+
+				foreach (var updateData in updateDatas)
 				{
-					item.Credits += 1;
+					updateData.Credits += 1;
 				}
 
+				var deleteData = from c in db.Course.Where(c => c.CourseID >= 9)
+					select c;
+				db.Course.RemoveRange(deleteData);
 				db.SaveChanges();
 			}
 
