@@ -27,17 +27,11 @@ namespace EFConsole
 				//AutoMapper
 				var c = db.Course.Create();
 				c.DepartmentID = 1;
-				c.Title = "123123";
+				c.Title = "123123456789";
 
 				db.Course.Add(c);
 				db.SaveChanges();
 
-				var co = db.Course.ToList();
-
-				foreach (var item in co)
-				{
-					Console.WriteLine(c.Department+"\t"+c.Title+"\t"+c.Credits);
-				}
 
 			}
 			
