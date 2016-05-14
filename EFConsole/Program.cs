@@ -20,7 +20,7 @@ namespace EFConsole
 					select p;
 				
 			}
-			//End,一個完整的生命週期
+			//End,一個完整的Entity Framework生命週期
 
 
 		}
