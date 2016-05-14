@@ -25,23 +25,14 @@ namespace EFConsole
 			using (var db = new ContosoUniversityEntities())
 			{
 				
-				var sql = @"SELECT Department.DepartmentID,
-						          Department.Name, 
-	                              COUNT(*) AS CourseCount
-							      FROM Course LEFT OUTER JOIN
-								  Department ON Course.DepartmentID = Department.DepartmentID
-							      GROUP BY Department.DepartmentID, Department.Name";
-
-				var data = db.Database.SqlQuery<DeptCourseCount>(sql);
+				var data = db.vwDeptCourseCount;
 
 					foreach (var item in data)
 					{
 						Console.WriteLine(item.Name+"\t"+item.CourseCount);
 					}
 
-				Console.ReadKey();
-
-
+					Console.ReadKey();
 			}
 			
 
