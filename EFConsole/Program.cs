@@ -24,15 +24,15 @@ namespace EFConsole
 			
 			using (var db = new ContosoUniversityEntities())
 			{
-				
+
 				var data = db.vwDeptCourseCount;
 
-					foreach (var item in data)
-					{
-						Console.WriteLine(item.Name+"\t"+item.CourseCount);
-					}
+				foreach (var item in data)
+				{
+					Console.WriteLine(item.Name + "\t" + item.CourseCount);
+				}
 
-					Console.ReadKey();
+				Console.ReadKey();
 			}
 			
 
