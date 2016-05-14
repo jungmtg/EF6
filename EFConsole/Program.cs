@@ -11,19 +11,7 @@ namespace EFConsole
 		static void Main(string[] args)
 		{
 
-			#region
-			//string a = null;
-
-			//string b = a ?? "test";
-			//syntax sugar
-			//if (a == null) b = "test";
-			//else
-			//{
-			//	b = a;
-			//}
-			//C#6.0
-			//int? c = a?.Length.ToString();
-			#endregion
+			
 
 
 		}
