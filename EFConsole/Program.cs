@@ -11,6 +11,7 @@ namespace EFConsole
 	{
 		static void Main(string[] args)
 		{
+			//Start
 			using (var db = new ContosoUniversityEntities())
 			{
 				
@@ -19,7 +20,7 @@ namespace EFConsole
 					select p;
 				
 			}
-
+			//End,一個完整的生命週期
 
 
 		}
