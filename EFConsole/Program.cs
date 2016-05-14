@@ -14,8 +14,17 @@ namespace EFConsole
 			
 			using (var db = new ContosoUniversityEntities())
 			{
-				var one = db.Course.Include("Department").FirstOrDefault(p => p.CourseID == 1);
-				Console.WriteLine(one.Title+"\t"+one.Department.Name);
+				foreach (var dept in db.Department)
+				{
+					Console.WriteLine(dept.Name);
+					foreach (var course in dept.Course)
+					{
+						Console.WriteLine("\t"+course.Title);
+					}
+
+					Console.ReadKey();
+
+				}
 
 
 			}
