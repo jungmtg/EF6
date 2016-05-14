@@ -17,19 +17,7 @@ namespace EFConsole
 				var data = from p in db.Course
 						   where p.Title.Contains("Git")
 					select p;
-
-				var updateDatas = from c in db.Course.Where(c => c.CourseID >= 9)
-								 select c;
-
-				foreach (var updateData in updateDatas)
-				{
-					updateData.Credits += 1;
-				}
-
-				var deleteData = from c in db.Course.Where(c => c.CourseID >= 9)
-					select c;
-				db.Course.RemoveRange(deleteData);
-				db.SaveChanges();
+				
 			}
 
 
