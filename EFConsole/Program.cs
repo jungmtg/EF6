@@ -11,24 +11,15 @@ namespace EFConsole
 	{
 		static void Main(string[] args)
 		{
-			//Start
+			
 			using (var db = new ContosoUniversityEntities())
 			{
-				
-				//var data = from p in db.Course
-				//		   where p.Title.Contains("Git")
-				//	select p;
-				db.Configuration.ProxyCreationEnabled = false;
-				foreach (var item in db.Course)
-				{
-					item.Title = "123";
-					Console.WriteLine(item.Title);
-				}
+				var one = db.Course.Find(1);
+				Console.WriteLine(one.Title+"\t"+one.Department.Name);
 
-				Console.ReadKey();
 
 			}
-			//End,一個完整的Entity Framework生命週期
+			
 
 
 		}
