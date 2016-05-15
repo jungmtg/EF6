@@ -26,6 +26,7 @@ namespace EFConsole
 			
 			using (var db = new ContosoUniversityEntities())
 			{
+				db.Database.Log = Console.WriteLine;
 				var c = db.Course.FirstOrDefault();
 				c.Title = "GO TO DMC";
 				if (db.Entry(c).State == EntityState.Modified)
@@ -35,6 +36,11 @@ namespace EFConsole
 					var v2=	db.Entry(c).OriginalValues.GetValue<string>("Title");
 
 				    Console.WriteLine("New Value:"+"\t"+v1+","+"\r\nOld Value:"+v2);
+
+					ce.CurrentValues.SetValues(
+						new {ModifiedOn=DateTime.Now}
+						);
+					db.SaveChanges();
 					Console.ReadKey();
 				}
 			}
