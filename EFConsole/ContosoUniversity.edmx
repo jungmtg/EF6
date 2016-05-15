@@ -430,7 +430,7 @@
           </FunctionImport>
           <EntitySet Name="vwDept" EntityType="ContosoUniversityModel.vwDept" />
           <EntitySet Name="vwDeptCourseCount" EntityType="ContosoUniversityModel.vwDeptCourseCount" />
-          <FunctionImport Name="GetDept" ReturnType="Collection(ContosoUniversityModel.GetDept_Result)" >
+          <FunctionImport Name="Get部門名稱與課程數量統計" ReturnType="Collection(ContosoUniversityModel.GetDept_Result1)">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -455,6 +455,11 @@
         </EntityType>
         <ComplexType Name="GetDept_Result">
           <Property Type="String" Name="DeptName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="CourseCount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetDept_Result1">
+          <Property Type="Int32" Name="DepartmentID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="CourseCount" Nullable="true" />
         </ComplexType>
       </Schema>
@@ -552,10 +557,11 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="GetDept" FunctionName="ContosoUniversityModel.Store.GetDept">
+          <FunctionImportMapping FunctionImportName="Get部門名稱與課程數量統計" FunctionName="ContosoUniversityModel.Store.GetDept">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="ContosoUniversityModel.GetDept_Result">
-                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+              <ComplexTypeMapping TypeName="ContosoUniversityModel.GetDept_Result1">
+                <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CourseCount" ColumnName="CourseCount" />
               </ComplexTypeMapping>
             </ResultMapping>

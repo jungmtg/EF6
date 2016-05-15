@@ -98,13 +98,13 @@ namespace EFConsole
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<byte[]>("Department_Update", departmentIDParameter, nameParameter, budgetParameter, startDateParameter, instructorIDParameter, rowVersion_OriginalParameter);
         }
     
-        public virtual ObjectResult<GetDept_Result> GetDept(Nullable<int> id)
+        public virtual ObjectResult<GetDept_Result1> Get部門名稱與課程數量統計(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
                 new ObjectParameter("id", id) :
                 new ObjectParameter("id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDept_Result>("GetDept", idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GetDept_Result1>("Get部門名稱與課程數量統計", idParameter);
         }
     }
 }

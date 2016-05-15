@@ -25,10 +25,10 @@ namespace EFConsole
 		{
 			using (var db = new ContosoUniversityEntities())
 			{
-				var data = db.GetDept();
+				var data = db.Get部門名稱與課程數量統計(4);
 				foreach (var item in data)
 				{
-					Console.WriteLine(item.DeptName);
+					Console.WriteLine(item.Name);
 				}
 			}
 

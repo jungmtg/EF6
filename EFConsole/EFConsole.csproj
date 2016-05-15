@@ -88,6 +88,9 @@
     <Compile Include="GetDept_Result.cs">
       <DependentUpon>ContosoUniversity.tt</DependentUpon>
     </Compile>
+    <Compile Include="GetDept_Result1.cs">
+      <DependentUpon>ContosoUniversity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Model1.Designer.cs" />
     <Compile Include="OfficeAssignment.cs">
       <DependentUpon>ContosoUniversity.tt</DependentUpon>
