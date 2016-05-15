@@ -26,18 +26,10 @@ namespace EFConsole
 			{
 				db.Database.Log = WriteLine;
 				
-				var c = db.Course.Find(19);
-
-				//狀態找到物件
-				//Entity 型別為course
-				//ce.State=Unchanged
-				WriteLine("ce.State"+"\t"+db.Entry(c).State);
-				c.Credits += 1;
-				WriteLine("ce.State" + "\t" + db.Entry(c).State);
-				db.Course.Remove(c);
-				WriteLine("ce.State" + "\t" + db.Entry(c).State);
+				var c = db.Course.Find(11);
+				//複製一筆資料並新增
+				db.Entry(c).State = System.Data.Entity.EntityState.Added;
 				db.SaveChanges();
-				WriteLine("ce.State" + "\t" + db.Entry(c).State);
 			}
 			
 			
