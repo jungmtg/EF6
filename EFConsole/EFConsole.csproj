@@ -76,6 +76,9 @@
       <DependentUpon>ContosoUniversity.tt</DependentUpon>
     </Compile>
     <Compile Include="Course.partial.cs" />
+    <Compile Include="CourseType.cs">
+      <DependentUpon>ContosoUniversity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Department.cs">
       <DependentUpon>ContosoUniversity.tt</DependentUpon>
     </Compile>
@@ -122,7 +125,6 @@
     <Content Include="ContosoUniversity.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>ContosoUniversity.edmx</DependentUpon>
-      <LastGenOutput>ContosoUniversity.Context.cs</LastGenOutput>
     </Content>
     <Content Include="ContosoUniversity.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

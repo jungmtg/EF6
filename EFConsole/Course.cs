@@ -32,6 +32,7 @@ namespace EFConsole
         public int DepartmentID { get; set; }
         public System.DateTime CreateOn { get; set; }
         public Nullable<System.DateTime> ModifiedOn { get; set; }
+        public Nullable<CourseType> CourseType { get; set; }
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

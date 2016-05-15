@@ -27,12 +27,21 @@ namespace EFConsole
 			{
 				db.Database.Log = Console.WriteLine;
 
-				var update = db.Department.Find(14);
-				update.Name = "GiGilove";
-				update.Budget = 111.11M;
+				//var update = db.Department.Find(14);
+				//update.Name = "GiGilove";
+				//update.Budget = 111.11M;
 
-				db.Department.Attach(update);
-				db.Entry(update).State = EntityState.Modified;
+				//db.Department.Attach(update);
+				//db.Entry(update).State = EntityState.Modified;
+				//db.SaveChanges();
+				db.Course.Add(new Course()
+				{
+					Title = "編年史",
+					Credits = 5,
+					CourseType=CourseType.全部,
+					DepartmentID = 1
+				})
+				;
 				db.SaveChanges();
 
 			}
