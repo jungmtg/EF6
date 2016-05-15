@@ -29,19 +29,6 @@ namespace EFConsole
 
 				db.Configuration.LazyLoadingEnabled = false;
 
-				var data = db.Course
-					.Where(p => p.CourseType.Value.HasFlag(CourseType.全部));
-				//p.CourseType.HasFlag(CourseType.前端)
-				foreach (var item in data)
-				{
-					Console.WriteLine(item.Title);
-				}
-
-				var c = db.Course.Find(5);
-				c.CourseType = CourseType.前端 | CourseType.後端;
-				
-				//db.SaveChanges();
-
 				var data2 = db.Course;//.Include(p => p.Department);
 					//.Where(p => p.CourseType == CourseType.全部);
 				//p.CourseType.HasFlag(CourseType.前端)
@@ -51,7 +38,13 @@ namespace EFConsole
 					Console.WriteLine("---------------------");
 					Console.WriteLine(item.Title);
 
-					db.Entry(item).Reference(p=>p.Department).Load();
+					//db.Entry(item).Reference(p=>p.Department).Load();
+					var refLink = db.Entry(item).Reference(p => p.Department);
+					if (!refLink.IsLoaded)
+					{
+						refLink.Load();
+					}
+
 
 					Console.WriteLine(item.Department.Name);
 					Console.WriteLine("---------------------");
