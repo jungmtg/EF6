@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -24,12 +26,17 @@ namespace EFConsole
 			
 			using (var db = new ContosoUniversityEntities())
 			{
-				db.Database.Log = WriteLine;
-				
-				var c = db.Course.Find(11);
-				//複製一筆資料並新增
-				db.Entry(c).State = System.Data.Entity.EntityState.Added;
-				db.SaveChanges();
+				var c = db.Course.FirstOrDefault();
+				c.Title = "GO TO DMC";
+				if (db.Entry(c).State == EntityState.Modified)
+				{
+					var ce = db.Entry(c);
+					var v1 = ce.CurrentValues.GetValue<string>("Title");
+					var v2=	db.Entry(c).OriginalValues.GetValue<string>("Title");
+
+				    Console.WriteLine("New Value:"+"\t"+v1+","+"\r\nOld Value:"+v2);
+					Console.ReadKey();
+				}
 			}
 			
 			
