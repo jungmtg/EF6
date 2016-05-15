@@ -27,23 +27,33 @@ namespace EFConsole
 			{
 				db.Database.Log = Console.WriteLine;
 
-				//var update = db.Department.Find(14);
-				//update.Name = "GiGilove";
-				//update.Budget = 111.11M;
-
-				//db.Department.Attach(update);
-				//db.Entry(update).State = EntityState.Modified;
-				//db.SaveChanges();
-				db.Course.Add(new Course()
+				var data = db.Course
+					.Where(p => p.CourseType.Value.HasFlag(CourseType.全部));
+				//p.CourseType.HasFlag(CourseType.前端)
+				foreach (var item in data)
 				{
-					Title = "編年史",
-					Credits = 5,
-					CourseType=CourseType.全部,
-					DepartmentID = 1
-				})
-				;
-				db.SaveChanges();
+					Console.WriteLine(item.Title);
+				}
 
+				var c = db.Course.Find(5);
+				c.CourseType = CourseType.前端 | CourseType.後端;
+				
+				//db.SaveChanges();
+
+				var data2 = db.Course.Include(p => p.Department);
+					//.Where(p => p.CourseType == CourseType.全部);
+				//p.CourseType.HasFlag(CourseType.前端)
+				foreach (var item in data2)
+				{
+					//Console.WriteLine(item.Title + " " +item.CourseType);
+					Console.WriteLine("---------------------");
+					Console.WriteLine(item.Title);
+					Console.WriteLine(item.Department.Name);
+					Console.WriteLine("---------------------");
+					Console.WriteLine();
+				}
+
+				Console.ReadKey();
 			}
 
 			#region
