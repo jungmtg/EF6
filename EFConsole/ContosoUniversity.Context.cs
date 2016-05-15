@@ -128,5 +128,22 @@ namespace EFConsole
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("DeleteDept", idParameter);
         }
+    
+        public virtual int UpdateDept(Nullable<int> id, string name, Nullable<decimal> budget)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("Id", id) :
+                new ObjectParameter("Id", typeof(int));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            var budgetParameter = budget.HasValue ?
+                new ObjectParameter("Budget", budget) :
+                new ObjectParameter("Budget", typeof(decimal));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("UpdateDept", idParameter, nameParameter, budgetParameter);
+        }
     }
 }

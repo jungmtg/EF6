@@ -203,6 +203,11 @@
           <Parameter Name="Name" Type="nvarchar" Mode="In" />
           <Parameter Name="Budget" Type="decimal" Mode="In" />
         </Function>
+        <Function Name="UpdateDept" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Name" Type="nvarchar" Mode="In" />
+          <Parameter Name="Budget" Type="decimal" Mode="In" />
+        </Function>
         <EntityContainer Name="ContosoUniversityModelStoreContainer">
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CourseInstructor" EntityType="Self.CourseInstructor" Schema="dbo" store:Type="Tables" />
@@ -445,7 +450,12 @@
             <Parameter Name="Budget" Mode="In" Type="Decimal" />
           </FunctionImport>
           <FunctionImport Name="DeleteDept">
-            <Parameter Name="id" Mode="In" Type="Int32" />
+          <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="UpdateDept">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+            <Parameter Name="Name" Mode="In" Type="String" />
+            <Parameter Name="Budget" Mode="In" Type="Decimal" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Department_Insert_Result">
@@ -514,6 +524,11 @@
                 <DeleteFunction FunctionName="ContosoUniversityModel.Store.DeleteDept" >
                   <ScalarProperty Name="DepartmentID" ParameterName="id" />
                 </DeleteFunction>
+                <UpdateFunction FunctionName="ContosoUniversityModel.Store.UpdateDept">
+                  <ScalarProperty Name="DepartmentID" ParameterName="Id" Version="Current" />
+                  <ScalarProperty Name="Budget" ParameterName="Budget" Version="Current" />
+                  <ScalarProperty Name="Name" ParameterName="Name" Version="Current" />
+                </UpdateFunction>
               </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -593,6 +608,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="InsertDept" FunctionName="ContosoUniversityModel.Store.InsertDept" />
           <FunctionImportMapping FunctionImportName="DeleteDept" FunctionName="ContosoUniversityModel.Store.DeleteDept" />
+          <FunctionImportMapping FunctionImportName="UpdateDept" FunctionName="ContosoUniversityModel.Store.UpdateDept" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
