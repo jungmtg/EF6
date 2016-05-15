@@ -175,6 +175,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="DeleteDept" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <Function Name="Department_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="DepartmentID" Type="int" Mode="In" />
           <Parameter Name="RowVersion_Original" Type="timestamp" Mode="In" />
@@ -441,6 +444,9 @@
             <Parameter Name="Name" Mode="In" Type="String" />
             <Parameter Name="Budget" Mode="In" Type="Decimal" />
           </FunctionImport>
+          <FunctionImport Name="DeleteDept">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Department_Insert_Result">
           <Property Type="Int32" Name="DepartmentID" Nullable="false" />
@@ -505,6 +511,9 @@
                   <ScalarProperty Name="Budget" ParameterName="Budget" />
                   <ScalarProperty Name="Name" ParameterName="Name" />
                 </InsertFunction>
+                <DeleteFunction FunctionName="ContosoUniversityModel.Store.DeleteDept" >
+                  <ScalarProperty Name="DepartmentID" ParameterName="id" />
+                </DeleteFunction>
               </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -583,6 +592,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="InsertDept" FunctionName="ContosoUniversityModel.Store.InsertDept" />
+          <FunctionImportMapping FunctionImportName="DeleteDept" FunctionName="ContosoUniversityModel.Store.DeleteDept" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
