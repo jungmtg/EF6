@@ -38,15 +38,16 @@ namespace EFConsole
 				Console.WriteLine(db.Entry(c).State);
 				c.Title = "321";
 				Console.WriteLine(db.Entry(c).State);
-				Console.Read();
+				
 				db.SaveChanges();
 
 			}
 
 			using (var db = new ContosoUniversityEntities())
 			{
-				//Don't modified c
+				//Modified c successful
 				c.Title = "4561";
+				db.Entry(c).State=EntityState.Modified;
 				db.SaveChanges();
 			}
 
