@@ -9,6 +9,9 @@ namespace EFConsole
 {
 	public partial class ContosoUniversityEntities:DbContext
 	{
+
+
+
 		public override int SaveChanges()
 		{
 			var entries = this.ChangeTracker.Entries();

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
@@ -25,20 +27,22 @@ namespace EFConsole
 		{
 			using (var db = new ContosoUniversityEntities())
 			{
-				db.Database.Log = Console.WriteLine;
+				db.Database.Log = (msg) =>
+				{
+					//File.AppendAllText(@"C:\ef6\test.txt",msg);
+					Debug.WriteLine(msg);
+				};
 
 				db.Configuration.LazyLoadingEnabled = false;
 
-				var data2 = db.Course;//.Include(p => p.Department);
-					//.Where(p => p.CourseType == CourseType.全部);
-				//p.CourseType.HasFlag(CourseType.前端)
+				var data2 = db.Course;
 				foreach (var item in data2)
 				{
-					//Console.WriteLine(item.Title + " " +item.CourseType);
+					
 					Console.WriteLine("---------------------");
 					Console.WriteLine(item.Title);
 
-					//db.Entry(item).Reference(p=>p.Department).Load();
+					
 					var refLink = db.Entry(item).Reference(p => p.Department);
 					if (!refLink.IsLoaded)
 					{
