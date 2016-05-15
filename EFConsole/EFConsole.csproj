@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="ContosoUniversityEntities.Context.cs" />
     <Compile Include="ContosoUniversityEntities.cs" />
+    <Compile Include="ContosoUniversityEntities.partial.cs" />
     <Compile Include="Course.cs">
       <DependentUpon>ContosoUniversity.tt</DependentUpon>
     </Compile>
