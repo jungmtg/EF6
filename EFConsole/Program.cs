@@ -33,22 +33,16 @@ namespace EFConsole
 
 			using (var db = new ContosoUniversityEntities())
 			{
-				//Throw Exception
-				
-
 				Console.WriteLine(db.Entry(c).State);
 				db.Course.Attach(c);
+				Console.WriteLine("Title="+c.Title);
+				Console.WriteLine(db.Entry(c).State);
 
 				db.Course.ToList();
 
-				Console.WriteLine("Title="+c.Title);
-
-				Console.WriteLine(db.Entry(c).State);
-
 				var tt = db.Course.Find(20);
-
 				Console.WriteLine("Title=" + c.Title);
-
+				Console.WriteLine(db.Entry(c).State);
 				//c.Title = "321";
 				//Console.WriteLine(db.Entry(c).State);
 				//db.SaveChanges();
