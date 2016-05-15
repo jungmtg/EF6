@@ -50,6 +50,9 @@ namespace EFConsole
 					//Console.WriteLine(item.Title + " " +item.CourseType);
 					Console.WriteLine("---------------------");
 					Console.WriteLine(item.Title);
+
+					db.Entry(item).Reference(p=>p.Department).Load();
+
 					Console.WriteLine(item.Department.Name);
 					Console.WriteLine("---------------------");
 					Console.WriteLine();
