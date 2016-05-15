@@ -23,29 +23,26 @@ namespace EFConsole
 
 		public static void Main(string[] args)
 		{
-			
+			var c = new Course()
+			{
+				CourseID = 20,
+				Title = "123",
+			    DepartmentID =1,
+				Credits = 1
+			};
+
 			using (var db = new ContosoUniversityEntities())
 			{
-				db.Database.Log = Console.WriteLine;
-				var c = db.Course.FirstOrDefault();
-				c.Title = "GO TO DMC";
-				if (db.Entry(c).State == EntityState.Modified)
-				{
-					var ce = db.Entry(c);
-					var v1 = ce.CurrentValues.GetValue<string>("Title");
-					var v2=	db.Entry(c).OriginalValues.GetValue<string>("Title");
+				Console.WriteLine(db.Entry(c).State);
+				db.Course.Attach(c);
+				Console.WriteLine(db.Entry(c).State);
+				c.Title = "321";
+				Console.WriteLine(db.Entry(c).State);
+				Console.Read();
 
-				    Console.WriteLine("New Value:"+"\t"+v1+","+"\r\nOld Value:"+v2);
-
-					ce.CurrentValues.SetValues(
-						new {ModifiedOn=DateTime.Now}
-						);
-					db.SaveChanges();
-					Console.ReadKey();
-				}
 			}
-			
-			
+
+
 
 
 		}
