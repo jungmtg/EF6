@@ -39,7 +39,15 @@ namespace EFConsole
 				c.Title = "321";
 				Console.WriteLine(db.Entry(c).State);
 				Console.Read();
+				db.SaveChanges();
 
+			}
+
+			using (var db = new ContosoUniversityEntities())
+			{
+				//Don't modified c
+				c.Title = "4561";
+				db.SaveChanges();
 			}
 
 
