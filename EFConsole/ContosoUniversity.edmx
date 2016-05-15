@@ -193,6 +193,9 @@
           <Parameter Name="InstructorID" Type="int" Mode="In" />
           <Parameter Name="RowVersion_Original" Type="timestamp" Mode="In" />
         </Function>
+        <Function Name="GetDept" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="ContosoUniversityModelStoreContainer">
           <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CourseInstructor" EntityType="Self.CourseInstructor" Schema="dbo" store:Type="Tables" />
@@ -427,6 +430,9 @@
           </FunctionImport>
           <EntitySet Name="vwDept" EntityType="ContosoUniversityModel.vwDept" />
           <EntitySet Name="vwDeptCourseCount" EntityType="ContosoUniversityModel.vwDeptCourseCount" />
+          <FunctionImport Name="GetDept" ReturnType="Collection(ContosoUniversityModel.GetDept_Result)" >
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="Department_Insert_Result">
           <Property Type="Int32" Name="DepartmentID" Nullable="false" />
@@ -447,6 +453,10 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CourseCount" Type="Int32" />
         </EntityType>
+        <ComplexType Name="GetDept_Result">
+          <Property Type="String" Name="DeptName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="CourseCount" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -542,6 +552,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetDept" FunctionName="ContosoUniversityModel.Store.GetDept">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ContosoUniversityModel.GetDept_Result">
+                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+                <ScalarProperty Name="CourseCount" ColumnName="CourseCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

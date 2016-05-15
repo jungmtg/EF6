@@ -23,40 +23,48 @@ namespace EFConsole
 
 		public static void Main(string[] args)
 		{
-			var c = new Course()
-			{
-				CourseID = 20,
-				Title = "123",
-			    DepartmentID =1,
-				Credits = 1
-			};
-
 			using (var db = new ContosoUniversityEntities())
 			{
-				Console.WriteLine(db.Entry(c).State);
-				db.Course.Attach(c);
-				Console.WriteLine("Title="+c.Title);
-				Console.WriteLine(db.Entry(c).State);
-
-				db.Course.ToList();
-
-				var tt = db.Course.Find(20);
-				Console.WriteLine("Title=" + c.Title);
-				Console.WriteLine(db.Entry(c).State);
-				//c.Title = "321";
-				//Console.WriteLine(db.Entry(c).State);
-				//db.SaveChanges();
-
+				var data = db.GetDept();
+				foreach (var item in data)
+				{
+					Console.WriteLine(item.DeptName);
+				}
 			}
 
-			using (var db = new ContosoUniversityEntities())
-			{
-				//Modified c successful
-				c.Title = "4561";
-				db.Entry(c).State=EntityState.Modified;
-				db.SaveChanges();
-			}
+			#region
+			//var c = new Course()
+			//{
+			//	CourseID = 20,
+			//	Title = "123",
+			//    DepartmentID =1,
+			//	Credits = 1
+			//};
 
+			//using (var db = new ContosoUniversityEntities())
+			//{
+			//	Console.WriteLine(db.Entry(c).State);
+			//	db.Course.Attach(c);
+			//	Console.WriteLine("Title="+c.Title);
+			//	Console.WriteLine(db.Entry(c).State);
+
+			//	db.Course.ToList();
+
+			//	var tt = db.Course.Find(20);
+			//	Console.WriteLine("Title=" + c.Title);
+			//	Console.WriteLine(db.Entry(c).State);
+
+
+			//}
+
+			//using (var db = new ContosoUniversityEntities())
+			//{
+			//	//Modified c successful
+			//	c.Title = "4561";
+			//	db.Entry(c).State=EntityState.Modified;
+			//	db.SaveChanges();
+			//}
+			#endregion
 
 
 
