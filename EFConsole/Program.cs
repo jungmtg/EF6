@@ -27,18 +27,12 @@ namespace EFConsole
 			{
 				db.Database.Log = Console.WriteLine;
 
-				//db.Department.Add(
-				//	new Department()
-				//	{
-				//		Name="Test0515_1",
-				//		Budget = 666.45M,
-				//		StartDate = DateTime.Now.AddDays(-29),
-				//		InstructorID = 4
-				//	});
-				db.Department.Remove(
-					db.Department.Find(15)
-					);
+				var update = db.Department.Find(14);
+				update.Name = "GiGilove";
+				update.Budget = 111.11M;
 
+				db.Department.Attach(update);
+				db.Entry(update).State = EntityState.Modified;
 				db.SaveChanges();
 
 			}
