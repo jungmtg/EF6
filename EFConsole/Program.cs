@@ -25,11 +25,18 @@ namespace EFConsole
 		{
 			using (var db = new ContosoUniversityEntities())
 			{
-				var data = db.Get部門名稱與課程數量統計(4);
-				foreach (var item in data)
-				{
-					Console.WriteLine(item.Name);
-				}
+				db.Database.Log = Console.WriteLine;
+
+				db.Department.Add(
+					new Department()
+					{
+						Name="Test0515",
+						Budget = 123.45M,
+						StartDate = DateTime.Now.AddDays(-29),
+						InstructorID = 4
+					});
+				db.SaveChanges();
+
 			}
 
 			#region
