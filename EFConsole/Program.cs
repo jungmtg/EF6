@@ -27,6 +27,8 @@ namespace EFConsole
 			{
 				db.Database.Log = Console.WriteLine;
 
+				db.Configuration.LazyLoadingEnabled = false;
+
 				var data = db.Course
 					.Where(p => p.CourseType.Value.HasFlag(CourseType.全部));
 				//p.CourseType.HasFlag(CourseType.前端)
@@ -40,7 +42,7 @@ namespace EFConsole
 				
 				//db.SaveChanges();
 
-				var data2 = db.Course.Include(p => p.Department);
+				var data2 = db.Course;//.Include(p => p.Department);
 					//.Where(p => p.CourseType == CourseType.全部);
 				//p.CourseType.HasFlag(CourseType.前端)
 				foreach (var item in data2)
